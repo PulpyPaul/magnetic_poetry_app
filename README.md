@@ -20,7 +20,7 @@ The goal is to create a word app that will allow uses to express themselves usin
 
 User interaction with the pan gesture is working, in addition to positioning words in an ordered format along the top. This app is currently working on iPhone/iPad.
 
-![alt text](img/checkpoint1.png)
+![alt text](img/checkpoint1.0.png)
 ![alt text](img/checkpoint1.1.png)
 
 ### Current Features
