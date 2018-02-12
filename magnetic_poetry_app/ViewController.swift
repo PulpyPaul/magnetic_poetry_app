@@ -9,32 +9,75 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    // Array of words for the app
     let words = ["could", "cloud", "bot", "bit", "ask", "a", "geek", "flame", "file",
                  "ed", "ed", "create", "like", "lap", "is", "ing", "I", "her", "drive",
                  "get", "soft", "screen", "protect", "online", "meme", "to", "they",
                  "that", "tech", "space", "source", "y", "write", "while"]
     
+    // Needed values for placing words
+    var screenWidth:CGFloat!
+    var screenHeight:CGFloat!
+    var yPadding:CGFloat!
+    var xPadding:CGFloat!
+    
+    
     override func viewDidLoad() {
+        getScreen()
         placeWords()
-        
         super.viewDidLoad()
     }
     
+    // Initalizes needed values for screen calculations
+    func getScreen(){
+        screenWidth = view.frame.width
+        screenHeight = view.frame.height
+        yPadding = CGFloat(40)
+        xPadding = CGFloat(20)
+    }
+    
+    // Places word on the screen
     func placeWords() {
         view.backgroundColor = UIColor.orange
+        
+        // Used to hold current screen position values
+        var currentX = CGFloat(0)
+        var currentY = CGFloat(40)
+        var lastWidth = CGFloat(0)
+        
         for word in words{
+            
+            // Create a new label
             let l = UILabel()
             l.backgroundColor = UIColor.white
+            
+            // Add padding and resize
             l.text = "   \(word)   "
             l.sizeToFit()
-            let x = CGFloat(arc4random() % 280) + 20.0
-            let y = CGFloat(arc4random() % 300) + 30.0
-            l.center = CGPoint(x:x, y:y)
+            
+            // Adds gets the new x value based on sizes of the current label and past label
+            currentX += (lastWidth / 2) + (l.frame.size.width / 2) + xPadding
+            
+            // Checks if we need a new row
+            if (currentX + l.frame.size.width / 2 + xPadding > screenWidth){
+                currentX = CGFloat(0)
+                currentX += l.frame.size.width / 2 + xPadding
+                currentY += yPadding
+            }
+            
+            // Assigns position
+            l.center = CGPoint(x: currentX, y: currentY)
+            
+            // Assigns previous label width
+            lastWidth = l.frame.size.width
+            
+            // Adds to view with pan gesture
             view.addSubview(l)
             l.isUserInteractionEnabled = true
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(doPanGesture))
             l.addGestureRecognizer(panGesture)
+            
         }
     }
     
@@ -43,10 +86,4 @@ class ViewController: UIViewController {
         let position = panGesture.location(in: view)
         label.center = position
     }
-
-
-
 }
-
-
-
