@@ -1,5 +1,5 @@
 # Luxurious Literature
-Paul DeSimone & Nick FedericoDeSimone
+Paul DeSimone & Nick Federico
 
 An interactive word based design app.
 
@@ -21,6 +21,7 @@ The goal is to create a word app that will allow uses to express themselves usin
 User interaction with the pan gesture is working, in addition to positioning words in an ordered format along the top. This app is currently working on iPhone/iPad.
 
 ![alt text](img/checkpoint1.png)
+![alt text](img/checkpoint1.1.png)
 
 ### Current Features
 
