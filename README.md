@@ -27,3 +27,12 @@ User interaction with the pan gesture is working, in addition to positioning wor
 
 1. Words can be dragged (automatically align on startup)
 2. Launch Screen and App Icons
+
+## Checkpoint 2
+
+This checkpoint we added a table window where you are able to select different word lists. Once the user does so, 
+the previous list is erased from the canvas. The application now displays the correct name on the home screen. 
+The staus bar is now hidden.
+
+![alt text](img/checkpoint2.0.png)
+![alt text](img/checkpoint2.1.png)
