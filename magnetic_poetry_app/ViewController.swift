@@ -86,4 +86,11 @@ class ViewController: UIViewController {
         let position = panGesture.location(in: view)
         label.center = position
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showWordSegue") {
+            let tablesVC = segue.destination.childViewControllers[0] as! TableViewController
+            tablesVC.title = "Choose a Word Set"
+        }
+    }
 }
