@@ -10,9 +10,20 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-    var wordSets = ["Colors", "Clothing", "Food"]
+    // Word sets
+    let wordSet_Food = ["pineapple", "pasta", "sausage", "cereal", "apple", "orange", "banana", "steak", "chicken", "pizza", "wings", "beef", "pork"]
+    let wordSet_Clothing = ["shoes", "hat", "sweatshirt", "socks", "pants", "shirt", "jacket", "gloves", "underwear"]
+    let wordSet_Majors = ["Game Development", "Computer Science", "Biology", "Chemistry", "Engineering", "Physics", "Graphic Design", "Performing Arts"]
+    
+    // Empty Tuple
+    var wordSets: [(name: String, value: [String])] = []
+    
+    var selectedWordSet = ["Why can't you just select a value..."]
     
     override func viewDidLoad() {
+        wordSets.append((name: "Food", value: wordSet_Food))
+        wordSets.append((name: "Clothing", value: wordSet_Clothing))
+        wordSets.append((name: "Majors", value: wordSet_Majors))
        super.viewDidLoad()
     }
     
@@ -24,8 +35,18 @@ class TableViewController: UITableViewController {
         
         // Creates a cell for each of the wordsets
         let cell = tableView.dequeueReusableCell(withIdentifier: "wordSet", for: indexPath)
-        cell.textLabel?.text = wordSets[indexPath.row]
+        
+        // Gets the tuple at a given index
+        let tuple = wordSets[indexPath.row]
+        
+        // Updates cell name
+        let tupleName = tuple.name
+        cell.textLabel?.text = tupleName
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedWordSet = wordSets[indexPath.row].value
     }
 
 }

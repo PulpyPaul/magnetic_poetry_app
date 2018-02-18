@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     // Array of words for the app
-    let words = ["could", "cloud", "bot", "bit", "ask", "a", "geek", "flame", "file",
+    var words = ["could", "cloud", "bot", "bit", "ask", "a", "geek", "flame", "file",
                  "ed", "ed", "create", "like", "lap", "is", "ing", "I", "her", "drive",
                  "get", "soft", "screen", "protect", "online", "meme", "to", "they",
                  "that", "tech", "space", "source", "y", "write", "while"]
@@ -22,10 +22,19 @@ class ViewController: UIViewController {
     var yPadding: CGFloat!
     var xPadding: CGFloat!
     
+    // Places new words when user clicks "Done"
+    @IBAction func unwindToMain(segue:UIStoryboardSegue){
+        if (segue.identifier == "DoneTapped") {
+            let tableVC = segue.source as! TableViewController
+            let currentWordSet = tableVC.selectedWordSet
+            removeLabels()
+            placeWords(newWordSet: currentWordSet)
+        }
+    }
     
     override func viewDidLoad() {
         getScreen()
-        placeWords()
+        placeWords(newWordSet: words)
         super.viewDidLoad()
     }
     
@@ -37,16 +46,16 @@ class ViewController: UIViewController {
         xPadding = CGFloat(20)
     }
     
-    // Places word on the screen
-    func placeWords() {
-        view.backgroundColor = UIColor.orange
+    // Places word on the screen based on array of strings
+    func placeWords(newWordSet: [String]) {
+        view.backgroundColor = UIColor(red: 255.0/255.0, green: 105.0/255.0, blue: 180.0/255.0, alpha: 1.0)
         
         // Used to hold current screen position values
         var currentX = CGFloat(0)
         var currentY = CGFloat(40)
         var lastWidth = CGFloat(0)
         
-        for word in words{
+        for word in newWordSet{
             
             // Create a new label
             let label = UILabel()
@@ -81,12 +90,22 @@ class ViewController: UIViewController {
         }
     }
     
+    // Removes all labels from the view class' subviews
+    func removeLabels() {
+        for currentView in view.subviews {
+            if (currentView is UILabel) {
+                currentView.removeFromSuperview()
+            }
+        }
+    }
+    
     @objc func doPanGesture(panGesture:UIPanGestureRecognizer) {
         let label = panGesture.view as! UILabel
         let position = panGesture.location(in: view)
         label.center = position
     }
     
+    // Hides status bar
     override var prefersStatusBarHidden: Bool {
         return true
     }

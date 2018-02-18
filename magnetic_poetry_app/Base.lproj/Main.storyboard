@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Choose Color" id="Yr2-se-xCf">
+                                    <barButtonItem title="Choose Word Set" id="Yr2-se-xCf">
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <connections>
                                             <segue destination="A75-J6-Rhf" kind="popoverPresentation" identifier="showWordSeque" popoverAnchorBarButtonItem="Yr2-se-xCf" id="TQB-me-iuY">
@@ -66,9 +66,16 @@
                             <outlet property="delegate" destination="uzD-0M-PVV" id="pJy-bo-0n0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Word Set" id="HKA-WI-DyT"/>
+                    <navigationItem key="navigationItem" title="Select Word Set" id="HKA-WI-DyT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="HJw-sF-BuR">
+                            <connections>
+                                <segue destination="1bw-0l-Fte" kind="unwind" identifier="DoneTapped" unwindAction="unwindToMainWithSegue:" id="iSy-TG-NF3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHs-Ga-8mO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1bw-0l-Fte" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1996" y="118"/>
         </scene>
