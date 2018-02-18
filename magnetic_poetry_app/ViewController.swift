@@ -87,10 +87,16 @@ class ViewController: UIViewController {
         label.center = position
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showWordSegue") {
             let tablesVC = segue.destination.childViewControllers[0] as! TableViewController
             tablesVC.title = "Choose a Word Set"
         }
     }
+    
+    
 }
