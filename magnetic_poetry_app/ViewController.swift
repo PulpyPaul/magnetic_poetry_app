@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var appController: AppController!
+    
     // Array of words for the app
     var words = ["could", "cloud", "bot", "bit", "ask", "a", "geek", "flame", "file",
                  "ed", "ed", "create", "like", "lap", "is", "ing", "I", "her", "drive",
