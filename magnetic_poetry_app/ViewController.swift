@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     
     // Places new words when user clicks "Done"
     @IBAction func unwindToMain(segue:UIStoryboardSegue){
-        if (segue.identifier == "DoneTapped") {
+        if segue.identifier == "DoneTapped" {
             let tableVC = segue.source as! TableViewController
             let currentWordSet = tableVC.selectedWordSet
             removeLabels()
@@ -35,13 +35,13 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        getScreen()
+        setupScreen()
         placeWords(newWordSet: words)
         super.viewDidLoad()
     }
     
     // Initalizes needed values for screen calculations
-    func getScreen() {
+    func setupScreen() {
         screenWidth = view.frame.width
         screenHeight = view.frame.height
         yPadding = CGFloat(40)
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
     
     // Places word on the screen based on array of strings
     func placeWords(newWordSet: [String]) {
-        view.backgroundColor = UIColor(red: 255.0/255.0, green: 105.0/255.0, blue: 180.0/255.0, alpha: 1.0)
+        view.backgroundColor = UIColor(red: 255.0 / 255.0, green: 105.0 / 255.0, blue: 180.0 / 255.0, alpha: 1.0)
         
         // Used to hold current screen position values
         var currentX = CGFloat(0)
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     // Removes all labels from the view class' subviews
     func removeLabels() {
         for currentView in view.subviews {
-            if (currentView is UILabel) {
+            if currentView is UILabel {
                 currentView.removeFromSuperview()
             }
         }
@@ -113,7 +113,7 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showWordSegue") {
+        if segue.identifier == "showWordSegue" {
             let tablesVC = segue.destination.childViewControllers[0] as! TableViewController
             tablesVC.title = "Choose a Word Set"
         }
