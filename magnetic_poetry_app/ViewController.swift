@@ -115,9 +115,20 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWordSegue" {
             let tablesVC = segue.destination.childViewControllers[0] as! TableViewController
-            tablesVC.title = "Choose a Word Set"
+            tablesVC.title = "Customize"
         }
     }
     
-    
+    @IBAction func share(_ sender: AnyObject) {
+        let image = self.view.takeSnapshot()
+        let textToShare = "Check out what I made with Luxurious Literature!"
+        let objectsToShare:[AnyObject] = [textToShare as AnyObject, image!]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivityType.print]
+        // 3 lines for ipad
+        //let popoverMenuViewController = activityVC.popoverPresentationController
+        //popoverMenuViewController?.permittedArrowDirections = .any
+        //popoverMenuViewController?.barButtonItem = sender as? UIBarButtonItem
+        self.present(activityVC, animated: true, completion: nil)
+    }
 }

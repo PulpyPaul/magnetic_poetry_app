@@ -14,7 +14,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="magnetic_poetry_app" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="UIImageView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -22,12 +22,18 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Choose Word Set" id="Yr2-se-xCf">
+                                    <barButtonItem title="Customize" id="Yr2-se-xCf">
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <connections>
                                             <segue destination="A75-J6-Rhf" kind="popoverPresentation" identifier="showWordSeque" popoverAnchorBarButtonItem="Yr2-se-xCf" id="TQB-me-iuY">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="khx-sj-Pgi"/>
+                                    <barButtonItem title="Share" id="g63-DE-ZFZ">
+                                        <connections>
+                                            <action selector="share:" destination="BYZ-38-t0r" id="Zzt-4u-ZAK"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -41,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="159" y="117"/>
+            <point key="canvasLocation" x="157.59999999999999" y="116.49175412293854"/>
         </scene>
         <!--Select Word Set-->
         <scene sceneID="vpT-ka-7BW">
@@ -51,6 +57,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="UUI-5s-Jeg">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Change Background" id="Nn8-E4-txa">
+                                    <connections>
+                                        <action selector="cameraButtonTapped:" destination="uzD-0M-PVV" id="RYb-9Q-tPi"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="wordSet" id="2xR-kA-x5M">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
