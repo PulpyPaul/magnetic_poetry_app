@@ -59,12 +59,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		3F9F68C6204B44E000F8F47B /* Controllers */ = {
+		3F9F68C6204B44E000F8F47B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F9F68C7204B44F500F8F47B /* AppController.swift */,
+				3F7A1D5E2038F8C50058339A /* TableViewController.swift */,
+				3FF39BA820312F5E0087F904 /* ViewController.swift */,
 			);
-			path = Controllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3FF39B9A20312F5E0087F904 = {
@@ -86,16 +87,15 @@
 		3FF39BA520312F5E0087F904 /* magnetic_poetry_app */ = {
 			isa = PBXGroup;
 			children = (
-				3F9F68C6204B44E000F8F47B /* Controllers */,
+				3F9F68C6204B44E000F8F47B /* ViewControllers */,
 				3F9F68C3204B443100F8F47B /* Models */,
 				3FF39BA620312F5E0087F904 /* AppDelegate.swift */,
-				3FF39BA820312F5E0087F904 /* ViewController.swift */,
 				3F788A81204C62FF007F5AC8 /* Extensions */,
 				3FF39BAA20312F5E0087F904 /* Main.storyboard */,
+				3F9F68C7204B44F500F8F47B /* AppController.swift */,
 				3FF39BAD20312F5E0087F904 /* Assets.xcassets */,
 				3FF39BAF20312F5E0087F904 /* LaunchScreen.storyboard */,
 				3FF39BB220312F5E0087F904 /* Info.plist */,
-				3F7A1D5E2038F8C50058339A /* TableViewController.swift */,
 			);
 			path = magnetic_poetry_app;
 			sourceTree = "<group>";

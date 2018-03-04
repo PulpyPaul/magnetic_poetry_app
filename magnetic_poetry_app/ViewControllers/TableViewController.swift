@@ -11,44 +11,32 @@ import UIKit
 class TableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var backgroundImage:UIImage?
-
-    // Word sets
-    let wordSet_Food = ["pineapple", "pasta", "sausage", "cereal", "apple", "orange", "banana", "steak", "chicken", "pizza", "wings", "beef", "pork"]
-    let wordSet_Clothing = ["shoes", "hat", "sweatshirt", "socks", "pants", "shirt", "jacket", "gloves", "underwear"]
-    let wordSet_Majors = ["Game Development", "Computer Science", "Biology", "Chemistry", "Engineering", "Physics", "Graphic Design", "Performing Arts"]
-    
-    // Empty Tuple
-    var wordSets: [(name: String, value: [String])] = []
-    
-    var selectedWordSet = ["Why can't you just select a value..."]
+    var appController : AppController!
+    var selectedWordSet = Constants.AppData.wordSets["Basic"]
     
     override func viewDidLoad() {
-        wordSets.append((name: "Food", value: wordSet_Food))
-        wordSets.append((name: "Clothing", value: wordSet_Clothing))
-        wordSets.append((name: "Majors", value: wordSet_Majors))
+       assert(appController != nil, "Dependency inject model")
        super.viewDidLoad()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return wordSets.count
+        let category = appController.categories[section]
+        let results = appController.getWordset(category: category)
+        return results.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // Creates a cell for each of the wordsets
         let cell = tableView.dequeueReusableCell(withIdentifier: "wordSet", for: indexPath)
-        
-        // Gets the tuple at a given index
-        let tuple = wordSets[indexPath.row]
-        
-        // Updates cell name
-        let tupleName = tuple.name
-        cell.textLabel?.text = tupleName
+        let category = appController.categories[indexPath.section]
+        let results = appController.getWordset(category: category)
+        let item = results[indexPath.row]
+        cell.textLabel?.text = item
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedWordSet = wordSets[indexPath.row].value
+        let category = appController.categories[indexPath.section]
+        selectedWordSet = appController.getWordset(category: category)
     }
 
     @IBAction func cameraButtonTapped(_ sender: AnyObject) {

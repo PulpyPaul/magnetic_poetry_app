@@ -18,6 +18,12 @@ class AppController {
         }
     }
     
+    var categories: [String] {
+        get {
+            return dataModel.categories
+        }
+    }
+    
     init(dataModel: AppData = AppDataUserDefaults()) {
         self.dataModel = dataModel
     }
@@ -25,5 +31,9 @@ class AppController {
     func updateWordSet(newWordSet: [String]) {
         dataModel.currentWordSet = newWordSet
         dataModel.save()
+    }
+    
+    func getWordset(category:String)->[String] {
+        return Constants.AppData.wordSets[category] ?? [String]()
     }
 }

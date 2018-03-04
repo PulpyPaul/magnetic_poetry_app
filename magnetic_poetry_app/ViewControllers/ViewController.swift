@@ -10,25 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var appController: AppController!
+    let yPadding = CGFloat(40)
+    let xPadding = CGFloat(20)
     
-    // Needed values for placing words
-    var screenWidth: CGFloat!
-    var screenHeight: CGFloat!
-    var yPadding: CGFloat!
-    var xPadding: CGFloat!
+    var appController: AppController!
+    var screenWidth : CGFloat = 0.0
+    var screenHeight : CGFloat = 0.0
     
     // Places new words when user clicks "Done"
     @IBAction func unwindToMain(segue:UIStoryboardSegue){
         if segue.identifier == "DoneTapped" {
             let tableVC = segue.source as! TableViewController
             let currentWordSet = tableVC.selectedWordSet
-            appController.updateWordSet(newWordSet: currentWordSet)
+            appController.updateWordSet(newWordSet: currentWordSet!)
             removeLabels()
-            placeWords(newWordSet: currentWordSet)
+            placeWords(newWordSet: currentWordSet!)
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScreen()
@@ -39,8 +38,6 @@ class ViewController: UIViewController {
     func setupScreen() {
         screenWidth = view.frame.width
         screenHeight = view.frame.height
-        yPadding = CGFloat(40)
-        xPadding = CGFloat(20)
     }
     
     // Places word on the screen based on array of strings
