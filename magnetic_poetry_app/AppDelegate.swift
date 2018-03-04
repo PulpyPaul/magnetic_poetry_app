@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let appController = AppController()
             viewController.appController = appController
-            
         }
         
         return true
