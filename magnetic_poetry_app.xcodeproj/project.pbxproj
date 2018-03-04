@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F788A83204C6324007F5AC8 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F788A82204C6324007F5AC8 /* UIExtensions.swift */; };
 		3F7A1D5F2038F8C50058339A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1D5E2038F8C50058339A /* TableViewController.swift */; };
 		3F9F68C5204B446900F8F47B /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F68C4204B446900F8F47B /* AppData.swift */; };
 		3F9F68C8204B44F500F8F47B /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F68C7204B44F500F8F47B /* AppController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F788A82204C6324007F5AC8 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		3F7A1D5E2038F8C50058339A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		3F9F68C4204B446900F8F47B /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		3F9F68C7204B44F500F8F47B /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F788A81204C62FF007F5AC8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F788A82204C6324007F5AC8 /* UIExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3F9F68C3204B443100F8F47B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 				3F9F68C3204B443100F8F47B /* Models */,
 				3FF39BA620312F5E0087F904 /* AppDelegate.swift */,
 				3FF39BA820312F5E0087F904 /* ViewController.swift */,
+				3F788A81204C62FF007F5AC8 /* Extensions */,
 				3FF39BAA20312F5E0087F904 /* Main.storyboard */,
 				3FF39BAD20312F5E0087F904 /* Assets.xcassets */,
 				3FF39BAF20312F5E0087F904 /* LaunchScreen.storyboard */,
@@ -164,6 +175,7 @@
 				3FF39BA920312F5E0087F904 /* ViewController.swift in Sources */,
 				3F9F68C8204B44F500F8F47B /* AppController.swift in Sources */,
 				3F7A1D5F2038F8C50058339A /* TableViewController.swift in Sources */,
+				3F788A83204C6324007F5AC8 /* UIExtensions.swift in Sources */,
 				3FF39BA720312F5E0087F904 /* AppDelegate.swift in Sources */,
 				3F9F68C5204B446900F8F47B /* AppData.swift in Sources */,
 			);
@@ -303,6 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LAN8Z2QY23;
 				INFOPLIST_FILE = magnetic_poetry_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DeSimone.Federico.magnetic-poetry-app";
@@ -317,6 +330,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LAN8Z2QY23;
 				INFOPLIST_FILE = magnetic_poetry_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DeSimone.Federico.magnetic-poetry-app";

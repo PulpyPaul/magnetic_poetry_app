@@ -8,7 +8,9 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var backgroundImage:UIImage?
 
     // Word sets
     let wordSet_Food = ["pineapple", "pasta", "sausage", "cereal", "apple", "orange", "banana", "steak", "chicken", "pizza", "wings", "beef", "pork"]
@@ -49,6 +51,27 @@ class TableViewController: UITableViewController {
         selectedWordSet = wordSets[indexPath.row].value
     }
 
+    @IBAction func cameraButtonTapped(_ sender: AnyObject) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // Delegate methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("finshed picking")
+        let image: UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        backgroundImage = image
+        (self.view as! UIImageView).contentMode = .center
+        (self.view as! UIImageView).image = backgroundImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("cancelled")
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
 
