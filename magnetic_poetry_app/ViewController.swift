@@ -12,12 +12,6 @@ class ViewController: UIViewController {
     
     var appController: AppController!
     
-    // Array of words for the app
-    var words = ["could", "cloud", "bot", "bit", "ask", "a", "geek", "flame", "file",
-                 "ed", "ed", "create", "like", "lap", "is", "ing", "I", "her", "drive",
-                 "get", "soft", "screen", "protect", "online", "meme", "to", "they",
-                 "that", "tech", "space", "source", "y", "write", "while"]
-    
     // Needed values for placing words
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
@@ -29,15 +23,16 @@ class ViewController: UIViewController {
         if segue.identifier == "DoneTapped" {
             let tableVC = segue.source as! TableViewController
             let currentWordSet = tableVC.selectedWordSet
+            appController.updateWordSet(newWordSet: currentWordSet)
             removeLabels()
             placeWords(newWordSet: currentWordSet)
         }
     }
     
     override func viewDidLoad() {
-        setupScreen()
-        placeWords(newWordSet: words)
         super.viewDidLoad()
+        setupScreen()
+        placeWords(newWordSet: appController.wordSet)
     }
     
     // Initalizes needed values for screen calculations

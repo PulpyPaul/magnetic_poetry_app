@@ -10,4 +10,20 @@ import Foundation
 
 class AppController {
     
+    private var dataModel: AppData
+    
+    var wordSet: [String] {
+        get {
+            return dataModel.currentWordSet
+        }
+    }
+    
+    init(dataModel: AppData = AppDataUserDefaults()) {
+        self.dataModel = dataModel
+    }
+    
+    func updateWordSet(newWordSet: [String]) {
+        dataModel.currentWordSet = newWordSet
+        dataModel.save()
+    }
 }
