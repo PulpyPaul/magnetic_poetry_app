@@ -82,6 +82,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(doPanGesture))
             label.addGestureRecognizer(panGesture)
             
+            // Adds a double tap gesture to delete the label
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+            tapGesture.numberOfTapsRequired = 2
+            label.addGestureRecognizer(tapGesture)
         }
     }
     
@@ -150,5 +154,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("cancelled")
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // Shrinks the label and removes it from subview
+    @objc func doubleTapped(tapGesture: UITapGestureRecognizer) {
+        for label in self.view.subviews {
+            if label is UILabel {
+                if (label.frame.contains(tapGesture.location(in: self.view))) {
+                    UIView.animate(withDuration: 0.3, animations: { label.transform = CGAffineTransform(scaleX: 0.1, y: 0.1) }, completion: {(done: Bool) in label.removeFromSuperview()})
+                }
+            }
+        }
     }
 }
