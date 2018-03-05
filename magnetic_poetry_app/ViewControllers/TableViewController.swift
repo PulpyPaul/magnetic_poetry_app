@@ -8,9 +8,8 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class TableViewController: UITableViewController {
     
-    var backgroundImage:UIImage?
     var appController : AppController!
     var selectedWordSet = Constants.AppData.wordSets["Basic"]
     
@@ -32,28 +31,6 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = appController.categories[indexPath.row]
         selectedWordSet = appController.getWordset(category: category)
-    }
-
-    @IBAction func cameraButtonTapped(_ sender: AnyObject) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    // Delegate methods
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("finshed picking")
-        let image: UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        backgroundImage = image
-        (self.view as! UIImageView).contentMode = .center
-        (self.view as! UIImageView).image = backgroundImage
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("cancelled")
-        picker.dismiss(animated: true, completion: nil)
     }
 }
 
