@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Words" id="Yr2-se-xCf">
-                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="A75-J6-Rhf" kind="popoverPresentation" identifier="showWordSeque" popoverAnchorBarButtonItem="Yr2-se-xCf" id="TQB-me-iuY">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -32,6 +32,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="h65-mh-Nkc"/>
                                     <barButtonItem title="Background" id="w2S-Za-340">
+                                        <color key="tintColor" red="0.30221177993086989" green="0.30221177993086989" blue="0.30221177993086989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="cameraButtonTapped:" destination="BYZ-38-t0r" id="cie-HI-Kuc"/>
                                         </connections>
@@ -68,7 +69,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2xR-kA-x5M" id="Ji2-gN-ksL">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -80,6 +81,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Select Word Set" id="HKA-WI-DyT">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kEt-zO-rfK">
+                            <connections>
+                                <segue destination="1bw-0l-Fte" kind="unwind" unwindAction="unwindToMainWithSegue:" id="din-SZ-B2q"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="HJw-sF-BuR">
                             <connections>
                                 <segue destination="1bw-0l-Fte" kind="unwind" identifier="DoneTapped" unwindAction="unwindToMainWithSegue:" id="iSy-TG-NF3"/>

@@ -10,6 +10,7 @@ import Foundation
 
 class AppController {
     
+    // ivars
     private var dataModel: AppData
     
     var wordSet: [String] {
@@ -24,10 +25,12 @@ class AppController {
         }
     }
     
+    // initializer
     init(dataModel: AppData = AppDataUserDefaults()) {
         self.dataModel = dataModel
     }
     
+    // functions
     func updateWordSet(newWordSet: [String]) {
         dataModel.currentWordSet = newWordSet
         dataModel.save()

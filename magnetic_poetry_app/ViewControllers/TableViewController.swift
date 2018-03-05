@@ -10,9 +10,11 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
+    // ivars
     var appController : AppController!
     var selectedWordSet = Constants.AppData.wordSets["Basic"]
     
+    // functions
     override func viewDidLoad() {
        super.viewDidLoad()
     }
