@@ -23,13 +23,13 @@ struct Constants {
     struct AppData {
    
         static let wordSets = [
-            "Food" : ["pineapple", "pasta", "sausage", "cereal", "apple", "orange", "banana", "steak", "chicken", "pizza", "wings", "beef", "pork"],
-            "Clothing" : ["shoes", "hat", "sweatshirt", "socks", "pants", "shirt", "jacket", "gloves", "underwear"],
-            "Majors" : ["Game Development", "Computer Science", "Biology", "Chemistry", "Engineering", "Physics", "Graphic Design", "Performing Arts"],
+            "Food" : ["pineapple", "pasta", "sausage", "cereal", "apple", "orange", "banana", "steak", "chicken", "pizza", "wings", "beef", "pork", "his", "her", "he", "she", "and", "is", "the", "in", "I", "to", "they", "cook", "bake", "clean", "cut", "boil"],
+            "Clothing" : ["shoes", "hat", "sweatshirt", "socks", "pants", "shirt", "jacket", "gloves", "underwear", "He", "She", "and", "is", "the", "in", "I", "to", "they", "wearing", "put", "on", "tied", "ripped", "his", "her"],
+            "Majors" : ["Game Development", "Computer Science", "Biology", "Chemistry", "Engineering", "Physics", "Graphic Design", "Performing Arts", "He", "She", "and", "is", "the", "in", "I", "to", "they", "his", "her"],
             "Basic" : ["could", "cloud", "bot", "bit", "ask", "a", "geek", "flame", "file",
                        "ed", "ed", "create", "like", "lap", "is", "ing", "I", "her", "drive",
                        "get", "soft", "screen", "protect", "online", "meme", "to", "they",
-                       "that", "tech", "space", "source", "y", "write", "while"]
+                       "that", "tech", "space", "source", "y", "write", "while", "his", "her"]
         ]
     }
 }
