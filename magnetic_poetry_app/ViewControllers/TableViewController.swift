@@ -15,27 +15,22 @@ class TableViewController: UITableViewController, UIImagePickerControllerDelegat
     var selectedWordSet = Constants.AppData.wordSets["Basic"]
     
     override func viewDidLoad() {
-       assert(appController != nil, "Dependency inject model")
        super.viewDidLoad()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let category = appController.categories[section]
-        let results = appController.getWordset(category: category)
-        return results.count
+        return appController.categories.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wordSet", for: indexPath)
-        let category = appController.categories[indexPath.section]
-        let results = appController.getWordset(category: category)
-        let item = results[indexPath.row]
-        cell.textLabel?.text = item
+        let category = appController.categories[indexPath.row]
+        cell.textLabel?.text = category
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let category = appController.categories[indexPath.section]
+        let category = appController.categories[indexPath.row]
         selectedWordSet = appController.getWordset(category: category)
     }
 

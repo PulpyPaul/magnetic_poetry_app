@@ -105,6 +105,11 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Gives the Table View Controller a reference to the app controller singleton
+        let tableVC = segue.destination.childViewControllers[0] as! TableViewController
+        tableVC.appController = appController
+        
         if segue.identifier == "showWordSegue" {
             let tablesVC = segue.destination.childViewControllers[0] as! TableViewController
             tablesVC.title = "Customize"
