@@ -12,7 +12,7 @@ class TableViewController: UITableViewController {
     
     // ivars
     var appController : AppController!
-    var selectedWordSet = Constants.AppData.wordSets["Basic"]
+    var selectedWordSet = [String]()
     
     // functions
     override func viewDidLoad() {

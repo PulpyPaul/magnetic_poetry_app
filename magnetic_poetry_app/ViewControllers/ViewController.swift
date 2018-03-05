@@ -10,22 +10,26 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let yPadding = CGFloat(40)
-    let xPadding = CGFloat(20)
-    
     var backgroundImage:UIImage?
     var appController: AppController!
     var screenWidth : CGFloat = 0.0
     var screenHeight : CGFloat = 0.0
+    var yPadding = CGFloat(40)
+    var xPadding = CGFloat(20)
     
     // Places new words when user clicks "Done"
     @IBAction func unwindToMain(segue:UIStoryboardSegue){
         if segue.identifier == "DoneTapped" {
+            
             let tableVC = segue.source as! TableViewController
-            let currentWordSet = tableVC.selectedWordSet
-            appController.updateWordSet(newWordSet: currentWordSet!)
-            removeLabels()
-            placeWords(newWordSet: currentWordSet!)
+            
+            // Ensures the wordset is not empty
+            if (tableVC.selectedWordSet != [String]()){
+                let currentWordSet = tableVC.selectedWordSet
+                appController.updateWordSet(newWordSet: currentWordSet)
+                removeLabels()
+                placeWords(newWordSet: currentWordSet)
+            }
         }
     }
 
@@ -58,6 +62,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             // Add padding and resize
             label.text = "   \(word)   "
+           
+            // Resizes labels for iPad
+            if (screenWidth > 420) {
+                label.font = UIFont.systemFont(ofSize: 30)
+                xPadding = CGFloat(50)
+                yPadding = CGFloat(80)
+            }
+            
             label.sizeToFit()
             
             // Adds gets the new x value based on sizes of the current label and past label
@@ -143,7 +155,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Delegate methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("finshed picking")
         let image: UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
         backgroundImage = image
         (self.view as! UIImageView).contentMode = .center
@@ -152,7 +163,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("cancelled")
         picker.dismiss(animated: true, completion: nil)
     }
     

@@ -86,7 +86,7 @@
                                 <segue destination="1bw-0l-Fte" kind="unwind" unwindAction="unwindToMainWithSegue:" id="din-SZ-B2q"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="HJw-sF-BuR">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="HJw-sF-BuR">
                             <connections>
                                 <segue destination="1bw-0l-Fte" kind="unwind" identifier="DoneTapped" unwindAction="unwindToMainWithSegue:" id="iSy-TG-NF3"/>
                             </connections>
