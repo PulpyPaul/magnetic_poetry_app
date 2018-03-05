@@ -10,9 +10,11 @@ import Foundation
 
 protocol AppData {
    
+    // ivars
     var currentWordSet: [String] { get set }
     var categories: [String] { get set }
-        
+    
+    // function calls
     func save()
     func load()
 }
@@ -36,12 +38,14 @@ struct Constants {
 
 class AppDataUserDefaults: AppData {
     
+    // ivars
     let defaults: UserDefaults
     
     var currentWordSet: [String]
     
     var categories: [String]
     
+    // initializer
     init(userDefaults: UserDefaults = UserDefaults.standard) {
         defaults = userDefaults
         currentWordSet = Constants.AppData.wordSets["Basic"]!
@@ -49,6 +53,7 @@ class AppDataUserDefaults: AppData {
         load()
     }
     
+    // functions
     func save() {
         defaults.set(currentWordSet, forKey: kWordSetKey)
     }
