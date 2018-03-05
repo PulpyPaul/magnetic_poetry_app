@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let yPadding = CGFloat(40)
     let xPadding = CGFloat(20)
     
+    var backgroundImage:UIImage?
     var appController: AppController!
     var screenWidth : CGFloat = 0.0
     var screenHeight : CGFloat = 0.0
@@ -127,5 +128,27 @@ class ViewController: UIViewController {
         //popoverMenuViewController?.permittedArrowDirections = .any
         //popoverMenuViewController?.barButtonItem = sender as? UIBarButtonItem
         self.present(activityVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func cameraButtonTapped(_ sender: AnyObject) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // Delegate methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("finshed picking")
+        let image: UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        backgroundImage = image
+        (self.view as! UIImageView).contentMode = .center
+        (self.view as! UIImageView).image = backgroundImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("cancelled")
+        picker.dismiss(animated: true, completion: nil)
     }
 }
