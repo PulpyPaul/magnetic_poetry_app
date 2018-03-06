@@ -46,14 +46,14 @@
                                 </items>
                             </toolbar>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="17" minValue="10" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="8Or-7i-pQF">
-                                <rect key="frame" x="124" y="533" width="237" height="31"/>
+                                <rect key="frame" x="125.5" y="533" width="235.5" height="31"/>
                                 <connections>
                                     <action selector="changeFontSize:" destination="BYZ-38-t0r" eventType="valueChanged" id="UUe-IR-zAm"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" tag="500" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Font Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3m-Hh-HAu">
-                                <rect key="frame" x="16" y="537.5" width="71" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="537.5" width="72.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -70,6 +70,9 @@
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="minMaxSlider" destination="8Or-7i-pQF" id="gFJ-c5-plH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -18,6 +18,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var yPadding = CGFloat(40)
     var xPadding = CGFloat(20)
     
+    // ------------------------- outlets -------------------------
+    @IBOutlet weak var minMaxSlider: UISlider!
+    
     // ------------------------- Storyboard actions -------------------------
     @IBAction func changeFontSize(_ sender: UISlider) {
         for subviewObject in self.view.subviews {
@@ -53,6 +56,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let objectsToShare:[AnyObject] = [textToShare as AnyObject, image!]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivityType.print]
+        let popoverMenuViewController = activityVC.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .any
+        popoverMenuViewController?.barButtonItem = sender as? UIBarButtonItem
         self.present(activityVC, animated: true, completion: nil)
     }
     
@@ -100,6 +106,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         setupScreen()
         placeWords(newWordSet: appController.wordSet, fontSize: 17)
+        setMinMaxValues()
     }
     
     // ------------------------- Storyboard Functions -------------------------
@@ -195,6 +202,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     currentView.removeFromSuperview()
                 }
             }
+        }
+    }
+    
+    // sets up min and max slider values
+    func setMinMaxValues() {
+        if (screenWidth > 420) {
+            minMaxSlider.value = 30
+            minMaxSlider.minimumValue = 17
+            minMaxSlider.maximumValue = 45
         }
     }
 }

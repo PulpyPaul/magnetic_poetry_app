@@ -36,3 +36,20 @@ The staus bar is now hidden.
 
 ![alt text](img/checkpoint2.0.png)
 ![alt text](img/checkpoint2.1.png)
+
+## Final Deliverable
+
+This checkpoint we added a share button so that the user is able to share a screenshot of their work to social media.
+We have also included the ability to change the background of the canvas. Now, if the user exits the application and enters back in, their previous work will be saved.
+
+![alt text](img/checkpoint3.0.png)
+![alt text](img/checkpoint3.1.png)
+![alt text](img/checkpoint3.2.png)
+![alt text](img/checkpoint3.3.png)
+
+### Above and Beyond
+1. Ability to change the font size using the slider
+2. User can save a screenshot to their library using the share feature
+3. Double tapping on a word will delete it (animated)
+
+
