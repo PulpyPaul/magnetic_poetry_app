@@ -10,12 +10,26 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // ------------------------- ivars -------------------------
     var backgroundImage:UIImage?
     var appController: AppController!
     var screenWidth : CGFloat = 0.0
     var screenHeight : CGFloat = 0.0
     var yPadding = CGFloat(40)
     var xPadding = CGFloat(20)
+    
+    // ------------------------- Storyboard actions -------------------------
+    @IBAction func changeFontSize(_ sender: UISlider) {
+        for subviewObject in self.view.subviews {
+            if subviewObject is UILabel {
+                let label = subviewObject as! UILabel
+                if (label.tag != 500) {
+                    label.font = UIFont.systemFont(ofSize: CGFloat(sender.value))
+                }
+                label.sizeToFit()
+            }
+        }
+    }
     
     // Places new words when user clicks "Done"
     @IBAction func unwindToMain(segue:UIStoryboardSegue){
@@ -28,16 +42,87 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 let currentWordSet = tableVC.selectedWordSet
                 appController.updateWordSet(newWordSet: currentWordSet)
                 removeLabels()
-                placeWords(newWordSet: currentWordSet)
+                placeWords(newWordSet: currentWordSet, fontSize: 17)
             }
         }
     }
+    
+    @IBAction func share(_ sender: AnyObject) {
+        let image = self.view.takeSnapshot()
+        let textToShare = "Check out what I made with Luxurious Literature!"
+        let objectsToShare:[AnyObject] = [textToShare as AnyObject, image!]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivityType.print]
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func cameraButtonTapped(_ sender: AnyObject) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
 
+    // ------------------------- Gesture Recognizer Action Methods  -------------------------
+    
+    // Shrinks the label and removes it from subview
+    @objc func doubleTapped(tapGesture: UITapGestureRecognizer) {
+        for label in self.view.subviews {
+            if label is UILabel {
+                if (label.frame.contains(tapGesture.location(in: self.view))) {
+                    UIView.animate(withDuration: 0.3, animations: { label.transform = CGAffineTransform(scaleX: 0.1, y: 0.1) }, completion: {(done: Bool) in label.removeFromSuperview()})
+                }
+            }
+        }
+    }
+    
+    @objc func doPanGesture(panGesture:UIPanGestureRecognizer) {
+        let label = panGesture.view as! UILabel
+        let position = panGesture.location(in: view)
+        label.center = position
+    }
+    
+    // ------------------------- Delegate Methods -------------------------
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image: UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        backgroundImage = image
+        (self.view as! UIImageView).contentMode = .center
+        (self.view as! UIImageView).image = backgroundImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScreen()
-        placeWords(newWordSet: appController.wordSet)
+        placeWords(newWordSet: appController.wordSet, fontSize: 17)
     }
+    
+    // ------------------------- Storyboard Functions -------------------------
+    
+    // Hides status bar
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Gives the Table View Controller a reference to the app controller singleton
+        let tableVC = segue.destination.childViewControllers[0] as! TableViewController
+        tableVC.appController = appController
+        
+        if segue.identifier == "showWordSegue" {
+            let tablesVC = segue.destination.childViewControllers[0] as! TableViewController
+            tablesVC.title = "Customize"
+        }
+    }
+    
+    // ------------------------- Helper Methods -------------------------
+    
     
     // Initalizes needed values for screen calculations
     func setupScreen() {
@@ -46,7 +131,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // Places word on the screen based on array of strings
-    func placeWords(newWordSet: [String]) {
+    func placeWords(newWordSet: [String], fontSize: Int) {
         view.backgroundColor = UIColor(red: 255.0 / 255.0, green: 105.0 / 255.0, blue: 180.0 / 255.0, alpha: 1.0)
         
         // Used to hold current screen position values
@@ -62,7 +147,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             // Add padding and resize
             label.text = "   \(word)   "
-           
+            label.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+            
             // Resizes labels for iPad
             if (screenWidth > 420) {
                 label.font = UIFont.systemFont(ofSize: 30)
@@ -105,73 +191,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func removeLabels() {
         for currentView in view.subviews {
             if currentView is UILabel {
-                currentView.removeFromSuperview()
-            }
-        }
-    }
-    
-    @objc func doPanGesture(panGesture:UIPanGestureRecognizer) {
-        let label = panGesture.view as! UILabel
-        let position = panGesture.location(in: view)
-        label.center = position
-    }
-    
-    // Hides status bar
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Gives the Table View Controller a reference to the app controller singleton
-        let tableVC = segue.destination.childViewControllers[0] as! TableViewController
-        tableVC.appController = appController
-        
-        if segue.identifier == "showWordSegue" {
-            let tablesVC = segue.destination.childViewControllers[0] as! TableViewController
-            tablesVC.title = "Customize"
-        }
-    }
-    
-    @IBAction func share(_ sender: AnyObject) {
-        let image = self.view.takeSnapshot()
-        let textToShare = "Check out what I made with Luxurious Literature!"
-        let objectsToShare:[AnyObject] = [textToShare as AnyObject, image!]
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityVC.excludedActivityTypes = [UIActivityType.print]
-        // 3 lines for ipad
-        //let popoverMenuViewController = activityVC.popoverPresentationController
-        //popoverMenuViewController?.permittedArrowDirections = .any
-        //popoverMenuViewController?.barButtonItem = sender as? UIBarButtonItem
-        self.present(activityVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func cameraButtonTapped(_ sender: AnyObject) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    // Delegate methods
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image: UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        backgroundImage = image
-        (self.view as! UIImageView).contentMode = .center
-        (self.view as! UIImageView).image = backgroundImage
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    // Shrinks the label and removes it from subview
-    @objc func doubleTapped(tapGesture: UITapGestureRecognizer) {
-        for label in self.view.subviews {
-            if label is UILabel {
-                if (label.frame.contains(tapGesture.location(in: self.view))) {
-                    UIView.animate(withDuration: 0.3, animations: { label.transform = CGAffineTransform(scaleX: 0.1, y: 0.1) }, completion: {(done: Bool) in label.removeFromSuperview()})
+                if (currentView.tag != 500) {
+                    currentView.removeFromSuperview()
                 }
             }
         }
